@@ -90,6 +90,11 @@
               <th>Gewählter Kurs</th>
               <th>E-Mail</th>
               <th>Newsletter</th>
+              <th (click)="changeRegistrationSorting()">Anmeldedatum
+                <span *ngIf="registrationSortKey === 'registrationDate'">
+                  {{ registrationSortOrder === 'asc' ? '▲' : '▼' }}
+                </span>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -99,6 +104,7 @@
               <td data-label="Gewählter Kurs">{{ registration.course.name }}</td>
               <td data-label="E-Mail">{{ registration.email }}</td>
               <td data-label="Newsletter">{{ registration.newsletter ? 'Ja' : 'Nein' }}</td>
+              <td data-label="Anmeldedatum">{{ registration.registrationDate | date: 'dd.MM.yyyy HH:mm' }}</td>
               <td>
                 <button 
                 [disabled]="loadingStates[i]"

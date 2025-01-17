@@ -124,7 +124,8 @@
       "birthdate": "2024-11-30",
       "email": "Sara.Luiba@gmail.com",
       "newsletter": true,
-      "id": 22
+      "id": 22,
+      "registrationDate": "2024-11-20T12:00:00Z"
     },
     {
       "name": "Katrin Mittermayer",
@@ -132,7 +133,8 @@
       "birthdate": "2020-05-10",
       "email": "Katrin.Mittermayer@gmx.at",
       "newsletter": true,
-      "id": 23
+      "id": 23,
+      "registrationDate": "2024-10-21T12:00:00Z"
     },
     {
       "name": "Leon Kummer",
@@ -140,7 +142,8 @@
       "birthdate": "2025-01-25",
       "email": "Leon.Kummer@gmail.com",
       "newsletter": true,
-      "id": 24
+      "id": 24,
+      "registrationDate": "2024-11-14T12:00:00Z"
     },
     {
       "name": "Finja Harold",
@@ -148,7 +151,8 @@
       "birthdate": "2025-01-04",
       "email": "Finja.Harold@gmail.com",
       "newsletter": true,
-      "id": 25
+      "id": 25,
+      "registrationDate": "2024-11-08T12:00:00Z"
     },
     {
       "name": "Anna Berger",
@@ -156,7 +160,8 @@
       "birthdate": "2025-01-04",
       "email": "Anna.Berger@gmail.com",
       "newsletter": true,
-      "id": 26
+      "id": 26,
+      "registrationDate": "2025-01-11T12:00:00Z"
     }
   ]
 }

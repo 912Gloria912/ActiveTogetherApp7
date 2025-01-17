@@ -31,6 +31,9 @@ export class DataComponent {
   public page: number = 1; // Aktuelle Seite
   public totalPages: number = 0; // Gesamtseitenanzahl
 
+  public registrationSortKey: string = 'registrationDate';
+  public registrationSortOrder: 'asc' | 'desc' = 'asc'; // Standard: Aufsteigend
+
   constructor(public storeService: StoreService, private backendService: BackendService) {}
 
   ngOnInit() {
@@ -39,6 +42,8 @@ export class DataComponent {
 
     // Lade die erste Seite der Registrierungen
     this.loadRegistrations(this.page);
+
+    this.applyRegistrationSorting();
   }
 
   // Filter-Logik
@@ -163,6 +168,19 @@ export class DataComponent {
         },
       });
     }
+  }
+
+  applyRegistrationSorting() {
+    this.storeService.registrations.sort((a, b) => {
+      const dateA = new Date(a.registrationDate).getTime();
+      const dateB = new Date(b.registrationDate).getTime();
+      return this.registrationSortOrder === 'asc' ? dateA - dateB : dateB - dateA;
+    });
+  }
+
+  changeRegistrationSorting() {
+    this.registrationSortOrder = this.registrationSortOrder === 'asc' ? 'desc' : 'asc';
+    this.applyRegistrationSorting();
   }
   
   

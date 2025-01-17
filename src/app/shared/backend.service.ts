@@ -35,10 +35,14 @@ export class BackendService {
   }
 
   public addRegistration(registration: any, page: number) {
-    this.http.post('http://localhost:5000/registrations', registration).subscribe(_ => {
-      this.getRegistrations(page);
-    })
+    // Füge das aktuelle Datum als Anmeldedatum hinzu
+    registration.registrationDate = new Date().toISOString();
+  
+    this.http.post('http://localhost:5000/registrations', registration).subscribe(() => {
+      this.getRegistrations(page); // Registrierungen neu laden
+    });
   }
+  
 
   
   public deleteRegistration(registrationId: number, page: number) {
