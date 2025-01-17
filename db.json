@@ -119,60 +119,44 @@
   ],
   "registrations": [
     {
-      "name": "Sascha Brunner",
-      "courseId": "_iL775a",
-      "birthdate": "2024-12-01",
-      "email": "Sascha-Brunner@gmail.com",
-      "newsletter": true,
-      "id": 11
-    },
-    {
-      "name": "Katharina Scheibenglut",
-      "courseId": "_iL775a",
+      "name": "Sara Luiba",
+      "courseId": "_iL775b",
       "birthdate": "2024-11-30",
-      "email": "Katharina-Schlut@gmx.com",
-      "newsletter": false,
-      "id": 12
-    },
-    {
-      "name": "Natalie Sebesta",
-      "courseId": "_iL775b",
-      "birthdate": "1992-07-24",
-      "email": "Nataliesebesta@gmx.com",
+      "email": "Sara.Luiba@gmail.com",
       "newsletter": true,
-      "id": 13
+      "id": 22
     },
     {
-      "name": "Lukas Freniz",
-      "courseId": "_iL775c",
-      "birthdate": "2017-01-01",
-      "email": "Lukas.Freniz@gmx.com",
-      "newsletter": true,
-      "id": 14
-    },
-    {
-      "name": "Lena Berger",
+      "name": "Katrin Mittermayer",
       "courseId": "_iL775b",
-      "birthdate": "2025-01-04",
-      "email": "Lenaberg@gmx.com",
-      "newsletter": false,
-      "id": 15
+      "birthdate": "2020-05-10",
+      "email": "Katrin.Mittermayer@gmx.at",
+      "newsletter": true,
+      "id": 23
     },
     {
-      "name": "Katharina Brunner",
+      "name": "Leon Kummer",
       "courseId": "_iL775c",
-      "birthdate": "2025-01-04",
-      "email": "Katharina.Brunner@gmx.at",
+      "birthdate": "2025-01-25",
+      "email": "Leon.Kummer@gmail.com",
       "newsletter": true,
       "id": 24
     },
     {
-      "name": "Natalie Kronstein",
-      "courseId": "_iL775b",
-      "birthdate": "1992-07-23",
-      "email": "Ntl.Kronstein@gmx.com",
+      "name": "Finja Harold",
+      "courseId": "_iL775c",
+      "birthdate": "2025-01-04",
+      "email": "Finja.Harold@gmail.com",
       "newsletter": true,
       "id": 25
+    },
+    {
+      "name": "Anna Berger",
+      "courseId": "_iL775a",
+      "birthdate": "2025-01-04",
+      "email": "Anna.Berger@gmail.com",
+      "newsletter": true,
+      "id": 26
     }
   ]
 }

@@ -121,4 +121,49 @@ export class DataComponent {
   returnAllPages(): number[] {
     return Array.from({ length: this.totalPages }, (_, i) => i + 1); // Seitenzahlen generieren
   }
+
+  public loadingStates: boolean[] = [];
+
+  /*
+  cancelRegistration(registrationId: string, index: number) {
+    if (confirm('Möchten Sie die Anmeldung wirklich stornieren?')) {
+      this.loadingStates[index] = true; // Spinner aktivieren
+      const idAsNumber = parseInt(registrationId, 10); // Konvertiere die ID in eine Zahl
+      this.backendService.deleteRegistration(idAsNumber, this.page).subscribe({
+        next: () => {
+          this.loadingStates[index] = false; // Spinner deaktivieren
+        },
+        error: () => {
+          this.loadingStates[index] = false; // Spinner deaktivieren, falls ein Fehler auftritt
+          alert('Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.');
+        },
+      });
+    }
+  }
+  */
+  cancelRegistration(registrationId: string, index: number) {
+    if (confirm('Möchten Sie die Anmeldung wirklich stornieren?')) {
+      this.loadingStates[index] = true; // Spinner aktivieren
+      const idAsNumber = parseInt(registrationId, 10); // Konvertiere die ID in eine Zahl
+  
+      this.backendService.deleteRegistration(idAsNumber, this.page).subscribe({
+        next: () => {
+          setTimeout(() => {
+            // Spinner deaktivieren und Registrierungen aktualisieren
+            this.loadingStates[index] = false;
+            this.loadRegistrations(this.page); // Registrierungen neu laden
+          }, 4000); // 4000 Millisekunden warten, bevor die Tabelle aktualisiert wird
+        },
+        error: () => {
+          // Fehlerbehandlung: Spinner bleibt sichtbar, bevor Fehlermeldung angezeigt wird
+          setTimeout(() => {
+            this.loadingStates[index] = false;
+            alert('Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.');
+          }, 4000);
+        },
+      });
+    }
+  }
+  
+  
 }

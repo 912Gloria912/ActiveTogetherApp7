@@ -52,3 +52,38 @@
     transition: background-color 0.3s ease;
   }
   
+  .btn-danger {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-danger:hover {
+    background-color: #c82333;
+  }
+  
+  .row-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    pointer-events: none; 
+  }
+  
+  .spinner-border {
+    width: 2rem;
+    height: 2rem;
+  }
+  tr.position-relative {
+    position: relative;
+  }
+  

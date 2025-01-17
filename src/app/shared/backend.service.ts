@@ -40,6 +40,11 @@ export class BackendService {
     })
   }
 
+  
+  public deleteRegistration(registrationId: number, page: number) {
+    return this.http.delete(`http://localhost:5000/registrations/${registrationId}`);
+  }
+
   public checkDuplicateRegistration(name: string, email: string, courseId: string) {
     return this.http.get<Registration[]>('http://localhost:5000/registrations').pipe(
       map((registrations: Registration[]) => {

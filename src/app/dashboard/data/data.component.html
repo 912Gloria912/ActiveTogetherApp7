@@ -46,13 +46,13 @@
               </th>
               <th>Veranstaltungsort</th>
               <th>Adresse</th>
-              <th>Erreichbarkeit</th>
+              <th>Öffentliche Erreichbarkeit</th>
               <th (click)="changeSorting('instructor')">Kursleiter/in
                 <span *ngIf="sortKey === 'instructor'">
                   {{ sortOrder === 'asc' ? '▲' : '▼' }}
                 </span>
               </th>
-              <th (click)="changeSorting('dates')">Termine
+              <th (click)="changeSorting('dates')">Terminübersicht
                 <span *ngIf="sortKey === 'dates'">
                   {{ sortOrder === 'asc' ? '▲' : '▼' }}
                 </span>
@@ -64,7 +64,7 @@
               <td data-label="Kurs">{{ course.name }}</td>
               <td data-label="Veranstaltungsort">{{ course.eventLocation.name }}</td>
               <td data-label="Adresse">{{ course.eventLocation.address }}</td>
-              <td data-label="Erreichbarkeit">{{ course.eventLocation.venueByPublicTansport ? 'Ja' : 'Nein' }}</td>
+              <td data-label="Öffentliche Erreichbarkeit">{{ course.eventLocation.venueByPublicTansport ? 'Ja' : 'Nein' }}</td>
               <td data-label="Kursleiter/in">{{ course.instructor }}</td>
               <td data-label="Termine">
                 <ul>
@@ -93,12 +93,23 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let registration of storeService.registrations">
+            <tr *ngFor="let registration of storeService.registrations; let  i = index" class="position-relative">
               <td data-label="Teilnehmer/in">{{ registration.name }}</td>
               <td data-label="Geburtsdatum">{{ registration.birthdate }}</td>
               <td data-label="Gewählter Kurs">{{ registration.course.name }}</td>
               <td data-label="E-Mail">{{ registration.email }}</td>
               <td data-label="Newsletter">{{ registration.newsletter ? 'Ja' : 'Nein' }}</td>
+              <td>
+                <button 
+                [disabled]="loadingStates[i]"
+                class="btn btn-danger"
+                (click)="cancelRegistration(registration.id, i)"> 
+                Abmelden
+                </button>
+              </td>
+                <td colspan="6" *ngIf="loadingStates[i]" class="row-overlay">
+                  <div class="spinner-border text-danger"></div>
+                </td>
             </tr>
           </tbody>
         </table>
