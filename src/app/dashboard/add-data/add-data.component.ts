@@ -45,7 +45,6 @@ export class AddDataComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // Initialize the form group
     
     this.registrationForm = this.formbuilder.group({
       name: ['', [Validators.required]],
@@ -54,21 +53,10 @@ export class AddDataComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       newsletter: [false]
     });
-    // Fetch the list of courses
+  
     this.backendService.getCourses();
   }
 
-  /*onSubmit() {
-    if (this.registrationForm.valid) {
-      console.log('Form Submitted:', this.registrationForm.value);
-      this.registrationForm.patchValue({birthdate:(this.registrationForm.value.birthdate as Date).toISOString().split("T")[0]});
-      this.backendService.addRegistration(this.registrationForm.value, this.storeService.currentPage);
-      this.registrationForm.reset();
-
-      this.isModalVisible = true;
-      
-    }
-  }*/
     errorMessage: string | null = null;
 
     onSubmit() {

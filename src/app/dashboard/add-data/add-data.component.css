@@ -1,4 +1,3 @@
-/* registration-form styles */
 .registration-form {
     max-width: 600px;
     margin: 0 auto;
@@ -8,19 +7,16 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
-  /* Styling for form fields */
   .form-field {
     width: 100%;
     margin-bottom: 20px;
   }
   
-  /* Styling for error messages */
   mat-error {
     font-size: 14px;
     color: #e74c3c;
   }
   
-  /* Form action styles (submit button) */
   .form-actions {
     text-align: center;
   }
@@ -37,7 +33,6 @@
     margin-bottom: 20px;
   }
   
-  /* Adjust form layout */
   mat-label {
     font-size: 16px;
     font-weight: 600;
@@ -47,14 +42,12 @@
     font-size: 14px;
   }
   
-
-/* When the modal is visible, we use the 'show' class to set display to block */
 .modal.show {
   display: block;
-  background-color: rgba(0, 0, 0, 0.5); /* Optional: adds a background overlay */
+  background-color: rgba(0, 0, 0, 0.5); 
 }
 
-/* Ensure the modal content is properly centered */
+
 .modal-dialog {
   position: relative;
   top: 25%;
@@ -76,7 +69,7 @@
 }
 .data-processing-info {
   font-size: 14px;
-  color: #6c757d; /* Dezentes Grau */
+  color: #6c757d;
   margin-top: 15px;
   text-align: center;
 }

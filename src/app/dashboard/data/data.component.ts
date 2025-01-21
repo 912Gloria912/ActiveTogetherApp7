@@ -13,40 +13,35 @@ import { Course } from '../../shared/Interfaces/Course';
   styleUrls: ['./data.component.css'],
 })
 export class DataComponent {
-  // Filterkriterien
   public filter = {
     courseName: '',
     instructorName: '',
     date: '',
   };
 
-  // Sortieroptionen
+
   public sortKey: keyof Course | undefined;
   public sortOrder: 'asc' | 'desc' = 'asc';
 
-  // Gefilterte und sortierte Kurse
   public filteredCourses: Course[] = [];
 
-  // Paginierung
-  public page: number = 1; // Aktuelle Seite
-  public totalPages: number = 0; // Gesamtseitenanzahl
+  public page: number = 1; 
+  public totalPages: number = 0; 
 
   public registrationSortKey: string = 'registrationDate';
-  public registrationSortOrder: 'asc' | 'desc' = 'asc'; // Standard: Aufsteigend
+  public registrationSortOrder: 'asc' | 'desc' = 'asc'; 
 
   constructor(public storeService: StoreService, private backendService: BackendService) {}
 
   ngOnInit() {
-    // Initialisiere die gefilterten Kurse
+   
     this.filteredCourses = [...this.storeService.courses];
 
-    // Lade die erste Seite der Registrierungen
     this.loadRegistrations(this.page);
 
     this.applyRegistrationSorting();
   }
 
-  // Filter-Logik
   applyFilters() {
     this.filteredCourses = this.storeService.courses.filter((course) => {
       const matchesCourseName = this.filter.courseName
@@ -66,17 +61,15 @@ export class DataComponent {
       return matchesCourseName && matchesInstructorName && matchesDate;
     });
 
-    this.applySorting(); // Nach Filterung sortieren
+    this.applySorting(); 
   }
 
-  // Sortier-Logik
   applySorting() {
     if (this.sortKey) {
       this.filteredCourses.sort((a, b) => {
         let valA: any;
         let valB: any;
 
-        // Besondere Behandlung für 'dates', da es ein Array ist
         if (this.sortKey === 'dates') {
           valA = a.dates[0]?.begin || '';
           valB = b.dates[0]?.begin || '';
@@ -85,7 +78,6 @@ export class DataComponent {
           valB = b[this.sortKey!];
         }
 
-        // Falls der Sortierwert ein String ist, wird er normalisiert
         if (typeof valA === 'string') valA = valA.toLowerCase();
         if (typeof valB === 'string') valB = valB.toLowerCase();
 
@@ -96,7 +88,7 @@ export class DataComponent {
     }
   }
 
-  // Sortierung ändern
+
   changeSorting(key: keyof Course) {
     if (this.sortKey === key) {
       this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
@@ -108,59 +100,40 @@ export class DataComponent {
     this.applySorting();
   }
 
-  // Registrierungen laden (Paginierung)
+
   loadRegistrations(page: number) {
-  // Ruft getRegistrations auf, aber keine Subscription notwendig, da der Service die Daten selbst speichert
+ 
   this.backendService.getRegistrations(page);
-  this.totalPages = Math.ceil(this.storeService.registrationTotalCount / 3); // Gesamtseitenanzahl berechnen
+  this.totalPages = Math.ceil(this.storeService.registrationTotalCount / 3); 
 }
 
-
-  // Seiten wechseln
   selectPage(page: number) {
-    this.page = page; // Aktuelle Seite setzen
-    this.loadRegistrations(page); // Daten für die gewählte Seite laden
+    this.page = page; 
+    this.loadRegistrations(page); 
   }
 
-  // Seitenanzahl berechnen
+
   returnAllPages(): number[] {
-    return Array.from({ length: this.totalPages }, (_, i) => i + 1); // Seitenzahlen generieren
+    return Array.from({ length: this.totalPages }, (_, i) => i + 1);
   }
 
   public loadingStates: boolean[] = [];
 
-  /*
   cancelRegistration(registrationId: string, index: number) {
     if (confirm('Möchten Sie die Anmeldung wirklich stornieren?')) {
-      this.loadingStates[index] = true; // Spinner aktivieren
-      const idAsNumber = parseInt(registrationId, 10); // Konvertiere die ID in eine Zahl
-      this.backendService.deleteRegistration(idAsNumber, this.page).subscribe({
-        next: () => {
-          this.loadingStates[index] = false; // Spinner deaktivieren
-        },
-        error: () => {
-          this.loadingStates[index] = false; // Spinner deaktivieren, falls ein Fehler auftritt
-          alert('Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.');
-        },
-      });
-    }
-  }
-  */
-  cancelRegistration(registrationId: string, index: number) {
-    if (confirm('Möchten Sie die Anmeldung wirklich stornieren?')) {
-      this.loadingStates[index] = true; // Spinner aktivieren
-      const idAsNumber = parseInt(registrationId, 10); // Konvertiere die ID in eine Zahl
+      this.loadingStates[index] = true; 
+      const idAsNumber = parseInt(registrationId, 10); 
   
       this.backendService.deleteRegistration(idAsNumber, this.page).subscribe({
         next: () => {
           setTimeout(() => {
-            // Spinner deaktivieren und Registrierungen aktualisieren
+           
             this.loadingStates[index] = false;
-            this.loadRegistrations(this.page); // Registrierungen neu laden
-          }, 4000); // 4000 Millisekunden warten, bevor die Tabelle aktualisiert wird
+            this.loadRegistrations(this.page); 
+          }, 4000); 
         },
         error: () => {
-          // Fehlerbehandlung: Spinner bleibt sichtbar, bevor Fehlermeldung angezeigt wird
+          
           setTimeout(() => {
             this.loadingStates[index] = false;
             alert('Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.');

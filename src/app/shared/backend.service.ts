@@ -43,8 +43,6 @@ export class BackendService {
     });
   }
   
-
-  
   public deleteRegistration(registrationId: number, page: number) {
     return this.http.delete(`http://localhost:5000/registrations/${registrationId}`);
   }
